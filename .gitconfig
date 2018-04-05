@@ -1,0 +1,8 @@
+[alias]
+    co = checkout
+    ci = commit
+    br = branch
+    st = status
+[user]
+    name = Your Name
+    email = your@email.com
