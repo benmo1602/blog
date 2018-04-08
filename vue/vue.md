@@ -81,7 +81,7 @@
 
         slot 具名slot的用法
 
-        ![img](https://github.com/caokunyu/blog/blob/master/vue/img/Image.png)
+        ![](https://github.com/caokunyu/blog/blob/master/vue/img/Image.png)
 
 **1. vue-router**
 
