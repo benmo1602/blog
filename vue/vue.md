@@ -55,8 +55,9 @@
 
 **使用总结**
 
-在 Vue 中，父子组件的关系可以总结为 props down， events up  
- 父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息
+    在 Vue 中，父子组件的关系可以总结为 props down， events up  
+        父组件通过 props 向下传递数据给子组件，
+        子组件通过 events 给父组件发送消息
 
         html特性是不区分大小写的， 当时用的不是字符串模板，驼峰命名的prop需要转换为相对应的短线隔开式命
         名  my-message  mySessage
@@ -79,21 +80,183 @@
             在自身事件被触发的时候，通过bus.$emit来向外周知其他组件，根据我的值来变化  
             on相当于发布模式的监听 emit相当于发布
 
-        slot 具名slot的用法
-        父组件的template
-        `
-            <div id="root">
-                <child>
-                    <div slot="four">第四</four>
-                    <div slot="three">第三</div>
-                </child>
+        keep-alive  把切换出去的组件保留在内存中，可以保留他的状态或避免重新渲染，渲染一次后可以存在内存
+        里，再用的时候就不用重新渲染了 用来提升性能
+
+        内联模板：如果子组件有inline-template 子组件里的东西就不在是solt 而是template
+        ：相当于bind @相当于on
+
+**slot **
+
+    具名slot的用法
+
+    父组件的template
+    ``
+        <div id="root">
+            <child>
+                <div slot="four">第四</four>
+                <div slot="three">第三</div>
+            </child>
+        </div>
+    ``
+    子组件的template
+    ``
+        const Child = {
+            template:`<div>
+                        <slot name="four"></slot>
+                        <slot name="three"></slot>
+                    </div>`
+        }
+    ``
+
+**Vue 组件的 API 来自三个部分**
+
+    props 允许外部环境传递数据给组件
+    Events 允许从外部环境在组件内触发副作用
+    Slots 允许外部环境精额外的内容组合在组件中
+
+**给组件绑定原生事件**
+
+    用.native修饰v-on  例如 <my-component v-on:click.native="dotherthing"></my-component>
+
+**双向绑定**
+` var vm = new Vue({
+data: {
+a: 123
+}
+})
+
+        // 不可以实现双向 绑定
+        vm.$data.b = 123;
+
+        // 可以实现双向绑定
+        Vue.set(vm.$data,"b", "123")
+        vm.$set(vm.$data, "b","123")`
+
+**VUEX**
+
+    state:存贮公共数据的地方
+    Getters：获取公共数据的地方
+    mutations：放的是同步的操作和reducer有点像  通过store的commit方法来让mutations执行
+    action：放的是异步的操作  通过dispatch的方法让action里面的方法执行
+    context是store的一个副本
+
+    Vuex就是提供一个仓库，store仓库里面放了很多对象其中state即使数据源存放地，
+
+    开始创建store实例：
+        new Vuex.store({state, getters, mutations, actions})
+        vuex可以集中管理组件的变化。以插件的形式进行引用
+        我们通常把应用级的状态放在store里面，
+        同步改变状态的方式放在mutations里面，
+        异步的放在action里面
+
+        state负责存贮整个应用的状态数据，后期可以使用this.$store.state直接获取状态。
+        Getters主要针对有些状态需要做二次处理，，通过this.$store.getters.valueName对派生出来的状态进行访问。
+        plugins 就是一个钩子函数，在初始化store的时候可以引入。
+        vuex里面处理数据，只能在mutations里面进行数据处理，actions里面把异步转化为同步，然后传到mutations里面进行处理
+
+**vue-router**
+
+    数据的获取： <div>{{$route.params.id}}</div>
+                <div>{{$route.query.name}}</div>
+            params: /:id   query: ?name=dell
+
+**VUE 传值问题**
+
+    一： 父组件向子组件传值：
+
+        子组件在props中创建一个属性，用以接收父组件传过来的值，
+        在父组件中要引入子组件，同时把需要传给子组件的值赋给该属性
+
+        <child :childInfo="childInfo"></child>
+
+        子组件 接收
+
+        export default {
+            data() {
+                return {}
+            },
+            props: ["childInfo"]
+        }
+
+    二:子组件向父组件传值：
+        子组件中需要以某种方式例如点击事件的方法来触发一个自定义事件
+        将需要传的值作为$emit的第二个参数。该值将作为实参传给响应自定义事件的方法
+        在父组件中注册子组件，并在子组件标签上绑定对自定义事件的监听
+
+        this.$emit("listenToChildEvent",data)
+
+        父组件 接收
+        <child v-on:listenToChildEvent="fn"></child>
+    三：非父子组件的传值
+    简单的非父子组件传值可以通过bus进行传值：
+    先定义一个bus
+        //bus.js
+        import Vue from 'vue'
+        export default new Vue()
+
+        组件A：
+    `        <template>
+                <div>
+                    A组件:
+                    <span>{{elementValue}}</span>
+                    <input type="button" value="点击触发" @click="elementByValue">
+                </div>
+            </template>
+            <script>
+                // 引入公共的bug，来做为中间传达的工具
+                import Bus from './bus.js'
+                export default {
+                    data () {
+                    return {
+                        elementValue: 4
+                    }
+                    },
+                    methods: {
+                    elementByValue: function () {
+                        Bus.$emit('val', this.elementValue)
+                    }
+                    }
+                }
+            </script>`
+        组件B：
+    ` <template>
+            <div>
+                B组件:
+                <input type="button" value="点击触发" @click="getData">
+                <span>{{name}}</span>
             </div>
-        `
+        </template>
+        <script>
+            import Bus from './bus.js'
+            export default {
+                data () {
+                    return {
+                        name: 0
+                    }
+                },
+                mounted: function () {
+                    var vm = this
+                    // 用$on事件来接收参数
+                    Bus.$on('val', (data) => {
+                        console.log(data)
+                        vm.name = data
+                    })
+                },
+                methods: {
+                    getData: function () {
+                        this.name++
+                    }
+                }
+            }
+        </script>`
 
-**1. vue-router**
+**vue 的底层实现**
 
-    params: /:id  
-    query: ?name=dell
+vue 是通过数据劫持的方式来做数据绑定，其中最核心的方法是通过 object.defineProperty()来实现。 1. 首先，需要利用 Object.defineProperty，将要观察的对象，转化成 getter/setter，以便拦截对象赋值与取值操作，称之为 Observer；
 
-数据的获取：
-`<div>{{$route.params.id}}</div> <div>{{$route.query.name}}</div>`
+2.  需要将 DOM 解析，提取其中的指令与占位符，并赋与不同的操作，称之为 Compiler；
+
+3.  需要将 Compile 的解析结果，与 Observer 所观察的对象连接起来，建立关系，在 Observer 观察到对象数据变化时，接收通知，同时更新 DOM，称之为 Watcher；
+
+    4.  最后，需要一个公共入口对象，接收配置，协调上述三者，称为 Vue;
