@@ -80,8 +80,15 @@
             on相当于发布模式的监听 emit相当于发布
 
         slot 具名slot的用法
-
-        ![img](https://github.com/caokunyu/blog/blob/master/vue/img/Image.png)
+        父组件的template
+        `
+            <div id="root">
+                <child>
+                    <div slot="four">第四</four>
+                    <div slot="three">第三</div>
+                </child>
+            </div>
+        `
 
 **1. vue-router**
 
