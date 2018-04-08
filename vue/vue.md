@@ -89,6 +89,4 @@
     query: ?name=dell
 
 数据的获取：
-
-<div>{{$route.params.id}}</div>
-<div>{{$route.query.name}}</div>
+`<div>{{$route.params.id}}</div> <div>{{$route.query.name}}</div>`
