@@ -5,14 +5,17 @@
 
 **VUE 的生命周期**
 
-    beforeCreate（创建前）,
-    created（创建后）,
-    beforeMount(载入前),
-    mounted（载入后）,
-    beforeUpdate（更新前）,
-    updated（更新后）,
-    beforeDestroy（销毁前）,
-    destroyed（销毁后）
+beforeCreate: 组件实例刚刚被创建,组件属性计算之前,如data属性
+created: 组件实例创建完成,属性已绑定,但是DOM还未完成,$el属性还不存在
+beforeMount:模板编译/挂载之前
+mounted: 模板编译/挂载之后
+beforeUpdate: 组件更新之前
+updated: 组件更新之后
+activated: for keep-alive,组件被激活时调用
+deactivated: for keep-alive,组件被移除时调用
+beforeDestroy: 组件销毁前被调用
+destoryed: 组件销毁后调用
+
 
 **VUE 的一些基础用法**
 
