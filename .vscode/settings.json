@@ -27,5 +27,14 @@
         "typescript",
         "typescriptreact",
         "yml"
+    ],
+    "cSpell.words": [
+        "cd",
+        "cp",
+        "ls",
+        "mkdir",
+        "pwd",
+        "rm",
+        "rmdir"
     ]
 }
