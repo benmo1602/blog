@@ -256,10 +256,12 @@ a: 123
 
 **vue 的底层实现**
 
-vue 是通过数据劫持的方式来做数据绑定，其中最核心的方法是通过 object.defineProperty()来实现。 1. 首先，需要利用 Object.defineProperty，将要观察的对象，转化成 getter/setter，以便拦截对象赋值与取值操作，称之为 Observer；
+vue 是通过数据劫持的方式来做数据绑定，其中最核心的方法是通过 object.defineProperty()来实现。 
 
-2.  需要将 DOM 解析，提取其中的指令与占位符，并赋与不同的操作，称之为 Compiler；
+    1. 首先，需要利用 Object.defineProperty，将要观察的对象，转化成 getter/setter，以便拦截对象赋值与取值操作，称之为 Observer；
 
-3.  需要将 Compile 的解析结果，与 Observer 所观察的对象连接起来，建立关系，在 Observer 观察到对象数据变化时，接收通知，同时更新 DOM，称之为 Watcher；
+    2.  需要将 DOM 解析，提取其中的指令与占位符，并赋与不同的操作，称之为 Compiler；
+
+    3.  需要将 Compile 的解析结果，与 Observer 所观察的对象连接起来，建立关系，在 Observer 观察到对象数据变化时，接收通知，同时更新 DOM，称之为 Watcher；
 
     4.  最后，需要一个公共入口对象，接收配置，协调上述三者，称为 Vue;
