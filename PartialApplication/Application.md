@@ -40,3 +40,51 @@ Arity（参数数量） 指的是一个函数可以接受的参数的数量。�
                 };
         };
     }
+
+
+Partial Application(偏函数应用) 是指使用一个函数并将其应用一个或多个参数，但不是全部参数，在这个过程中创建一个新函数。
+
+
+###  bind 
+
+    function add3(a, b, c) { return a+b+c; }  
+    add3(2,4,8);  // 14
+    
+    var add6 = add3.bind(this, 2, 4);  
+    add6(8);  // 14      
+### curry 
+
+    var add6 = curry(add3)(2)(4);  
+    add6(8); // 14  
+
+### apply 
+
+    // 应用左边任意数量的参数
+    function apply(fn /* partial arguments... */) {  
+        var args = [].slice.call(arguments, 1);
+        return function() {
+            var _args = [].slice.call(arguments);
+            return fn.apply(this, args.concat(_args));
+        }
+    }
+    var add6 = apply(add3, 2, 4)
+
+## ES6 中 curry 和 apply 的实现
+
+    function curry(fn) {  
+        return function curried(...args) {
+            return args.length >= fn.length ?
+                fn.call(this, ...args) :
+                (...rest) => {
+                    return curried.call(this, ...args, ...rest);
+                };
+        };
+    }
+
+    // 应用左边任意数量的参数
+    function apply(fn, ...args) {  
+        return (..._args) => {
+            return fn(...args, ..._args);
+        };
+    }
+

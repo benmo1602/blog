@@ -16,7 +16,7 @@
 
     我们还可以创建有多个函数合成的函数,创建链式的输入处理。
 
-#### 过滤数据
+#### 过滤数据 filter
 
     function filter (list , fn ) {
         return list.filter(fn);
