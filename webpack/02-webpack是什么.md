@@ -58,51 +58,49 @@ webpack运行的核心是基于配置的。这是官方教程中的一个配置d
 
 #### webpack.config.js
 
-``` javascript
 
-const webpack = require('webpack');
+    const webpack = require('webpack');
 
-module.exports = {
-  // 打包入口
-  entry: {
-    app: './entry.js',
-  },
-
-  // 输出目录
-  output: {
-    // 输出文件所在目录
-    path: __dirname,
-
-    // 根据模式匹配出打包生成文件的名字
-    filename: '[name].js',
-  },
-
-  // 当遇到imports语句时，如何进行解析
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+    module.exports = {
+      // 打包入口
+      entry: {
+        app: './entry.js',
       },
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
+
+      // 输出目录
+      output: {
+        // 输出文件所在目录
+        path: __dirname,
+
+        // 根据模式匹配出打包生成文件的名字
+        filename: '[name].js',
       },
-    ],
-  },
 
-  // 附加要处理的内容
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-  ],
+      // 当遇到imports语句时，如何进行解析
+      module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
+          {
+            test: /\.js$/,
+            use: 'babel-loader',
+            exclude: /node_modules/,
+          },
+        ],
+      },
 
-  // 适配模块解析的一些算法和配置
-  resolve: {
-    alias: { ... },
-  },
-};
-```
+      // 附加要处理的内容
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
+      ],
+
+      // 适配模块解析的一些算法和配置
+      resolve: {
+        alias: { ... },
+      },
+    };
 
 当webpack的配置文件比较庞大复杂的时候，这种配置模式看起来会让人比较难理解。如果你不了解底层的解析机制，你是看不懂这些配置文件的，这个教程的目的就是一步步带大家了解原理，帮助你学会如何配置webpack。
 

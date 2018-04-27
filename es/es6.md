@@ -1,5 +1,5 @@
 
-### 1. var、let、const
+## 第一章  var、let、const
 
     var 在当前作用域会**变量提升** 
     let和const都能够声明块级作用域，用法和var是类似的
@@ -9,15 +9,16 @@
         不允许修改默认赋值，但如果定义的是对象Object，那么可以修改对象内部的属性值包括新增删除键值对也是可以的
 
     没有声明和声明后没有赋值是不一样的
-
-    临时死区(TDZ) -- 没什么用
-    
     a. 在全局作用域使用let或者const声明，当声明的变量本身就是全局属性，比如closed。只会覆盖该全局变量，而不会替换它。
     b. 选择使用var、let还是const，取决于我们的变量是不是需要更新，通常我们希望变量保证不被恶意修改，而使用大量的const，在react中，props传递的对象是不可更改的，所以使用const声明，声明一个对象的时候，也推荐使用const，当你需要修改声明的变量值时，使用let，var能用的场景都可以使用let替代
 
-## 字符串 
+####  临时死区(TDZ) -- 没什么用
 
-    字符串（String）是JavaScript6大原始数据类型。其他几个分别是Boolean、Null、Undefined、Number、Symbol（es6新增）。
+## 第二章 字符串和正则表达式
+
+####   字符串（String）是JavaScript6大原始数据类型。
+    
+    其他几个分别是Boolean、Null、Undefined、Number、Symbol（es6新增）。
 
     a. 当Unicode引入扩展字符集之后，16位的字符已经不足以满足字符串的发展，所以才在ES6中更新了Unicode的支持。
         **UTF-16码位：** ES6强制使用UTF-16字符串编码
@@ -34,7 +35,7 @@
         3. endsWith(str, index)：如果在字符串的结束部分检测到指定文本，返回true，否则返回false。
         4. repeat(number) 接收一个Number类型的数据，返回一个重复N次的新字符串。即使这个字符串是空字符，也你能返回N个空字符的新字符串
 
-### 正则表达式的其他更新
+ #### 正则表达式的其他更新
 
     正则表达式y修饰符、正则表达式的复制、flags属性…
 
@@ -51,3 +52,57 @@
         let a = 4
         let t = tag`${a} haha`
         console.log(t) //4 haha
+
+## 第三章 函数
+        1.  箭头 函数   ()=> {}   
+         没有绑定 this 
+
+        2. 参数 
+            a. 　形参
+            es5 写法 
+                function makeRequest(url, timeout, callback) {
+                    timeout = timeout || 2000;
+                    callback = callback || function() {};
+
+                    // 函数的其它部分
+
+                } // timeout=0时失效
+
+                function makeRequeset(url, timeout, callback) {
+                    timeout = (typeof timeout !== "undefined") ? timeout : 2000;
+                    callback = (typeof callback !== "undefined") ? callback: function() {};
+
+                    // 函数的其它部分
+
+                } // 更加安全，但代码复杂
+
+            es6 的写法 
+                function makeRequest(url, timeout = 2000, callback) {
+                    // 函数的其它部分
+                }
+                makeRequeset("/foo", undefined, function(body) {
+                    doSomething(body);
+                }); // 使用timeout的默认值
+
+                makeRequeset("/foo"); // 使用timeout的默认值
+                makeRequeset("/foo", null, function(body) {
+                    doSomething(body);
+                }); // 不使用timeout的默认值
+
+            ** 传入参数  undefined 使用默认值， 传入null 实用 **
+        b.  默认参数 
+            
+            arguments 不随 命名参数 变化 
+        c. 不定参数 
+
+            // 不定参数后不能有其它命名参数
+            function pick(object, ...keys, last) {
+                let result = Object.create(null);
+                
+                for (let i = 0, len = keys.length; i < len; i++) {
+                    result[keys[i]] = object[keys[i]];
+                }
+                return result;
+            }
+        d.构造函数 
+            
