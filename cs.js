@@ -9,11 +9,23 @@
 // let t = tag`${a} haha`
 // console.log(t) //undefianed
 
-let person = ((name) => {
-    return {
-        getName: function () {
-            return name;
-        }
-    }
-})("Nickolas");
-console.log(person.getName());
+// let person = ((name) => {
+//     return {
+//         getName: function () {
+//             return name;
+//         }
+//     }
+// })("Nickolas");
+// console.log(person.getName());
+
+// function f() {
+//     console.log('aaa');
+// }
+
+// let [x = f] = [];
+// setTimeout(() => {
+//     x()
+// }, 3000);
+
+'𠮷'.charAt(0) // "
+console.log('𠮷'.charAt(0))
