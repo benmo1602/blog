@@ -75,8 +75,12 @@
         let func = eval.call(null, str);
         func('Jack') // "Hello Jack!"
     实例：模板编译
+        通过模板字符串，生成正式模板的实例。
 
 ### 标签模板
+    alert`123`
+    // 等同于
+    alert(123)
     “标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。
 
 String.raw()
