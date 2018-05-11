@@ -27,5 +27,15 @@
 //     x()
 // }, 3000);
 
-'𠮷'.charAt(0) // "
-console.log('𠮷'.charAt(0))
+// '𠮷'.charAt(0) // "
+// console.log('𠮷'.charAt(0))
+// $.get()
+
+console.log(...[1, 2, 3])
+// 1 2 3
+
+console.log(1, ...[2, 3, 4], 5)
+// 1 2 3 4 5
+
+// [...document.querySelectorAll('div')]
+// [<div>, <div>, <div>]
