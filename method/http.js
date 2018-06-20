@@ -42,6 +42,18 @@ axios.interceptors.response.use(
 
 export default axios;
 
+
+
+
+/* 
+    方法 懒得分开 引用许谨慎
+*/
+
+
+
+
+
+
 /**
  * fetch 请求方法
  * @param url
