@@ -10,3 +10,7 @@ vue create [项目名]
 或者 使用 
 
 kr-vue-startkit  插件搭建 
+
+
+
+支持 pwa  点赞
