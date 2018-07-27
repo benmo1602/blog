@@ -11,3 +11,25 @@
     class 控制 可以 通过 {{ true ? 'actived' : ''}} 
 
 
+- [支付接口方法调用必须在addevent里边调用](http://www.cnblogs.com/true_to_me/p/3565039.html)
+```javascript
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady(){
+    that.initOrder();
+}, false);
+```
+
+- 支付接口方法调用必须在
+```javascript
+WeixinJSBridge.invoke('getBrandWCPayRequest', d, function(res){
+    if(res.err_msg == "get_brand_wcpay_request:ok"){
+        // alert("支付成功");
+        // union.release(d.orderId);
+        resetUrl();
+        paySuccess('home', d.orderId);
+    } else {
+        cancelOrder(d.orderId);
+        // alert(res.err_msg);
+    }
+    loading.hide();
+});
+```
