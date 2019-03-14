@@ -147,4 +147,4 @@ function blueprint(f) {
     };
     g.clones = [];
     return g;
-};
+}
