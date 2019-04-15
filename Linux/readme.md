@@ -4,7 +4,7 @@
     路径的写法，由根目录 / 写起，例如： /usr/share/doc 这个目录。
     相对路径：
     路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成： cd ../man 这就是相对路径的写法啦！
-    
+
 
     ls: 列出目录
     cd：切换目录
@@ -14,7 +14,7 @@
     cp: 复制文件或目录
     rm: 移除文件或目录
 
-Linux系统中使用以下命令来查看文件的内容：
+## Linux系统中使用以下命令来查看文件的内容：
 
     cat  由第一行开始显示文件内容
     tac  从最后一行开始显示，可以看出 tac 是 cat 的倒著写！
@@ -24,31 +24,3 @@ Linux系统中使用以下命令来查看文件的内容：
     head 只看头几行
     tail 只看尾巴几行
     你可以使用 man [命令]来查看各个命令的使用文档，如 ：man cp
-
-
-安装 node 
-
-cd /usr/local/src/
-wget http://nodejs.org/dist/v8.11.4/node-v8.11.4.tar.gz
-
-tar zxvf node-v8.11.4.tar.gz
-
-cd node-v8.11.4
-
-./configure --prefix=/usr/local/node/8.11.4
-
-make 
-
-make install 
-
-vim /etc/profile
-
-#set for nodejs
-export NODE_HOME=/usr/local/node/8.11.4
-export PATH=$NODE_HOME/bin:$PATH
-
-source /etc/profile
-
-node -v
-
-/usr/local/node/8.11.4/lib/node_modules/

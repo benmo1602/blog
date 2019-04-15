@@ -2,7 +2,7 @@ import axios from 'axios' //引用axios
 import {getCookie} from './util' //引用刚才我们创建的util.js文件，并使用getCookie方法
 
 // axios 配置
-axios.defaults.timeout = 5000; 
+axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'http://localhost/pjm-shield-api/public/v1/'; //这是调用数据接口
 
 // http request 拦截器，通过这个，我们就可以把Cookie传到后台
@@ -45,11 +45,9 @@ export default axios;
 
 
 
-/* 
+/*
     方法 懒得分开 引用许谨慎
 */
-
-
 
 
 

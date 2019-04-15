@@ -1,9 +1,6 @@
-#node
+#node  中间件
 
-#### express 中间件
-
-    1. 应用级别 的中间件
-
+    1. 应用中间件
         app.use(
             (request, response, next) => {
                 console.log();

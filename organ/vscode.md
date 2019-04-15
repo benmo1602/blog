@@ -1,7 +1,6 @@
-插件列表
+# vscode  插件列表
 
-**名称  	简述**
-
+    **名称  	简述**
     Auto Close Tag	自动闭合HTML标签
     Auto Import	Typescript自动import提示
     Auto Rename Tag	修改HTML标签时，自动修改匹配的标签
@@ -82,7 +81,7 @@
     vscode-random	随机字符串生成器
     vscode-styled-components	styled-components高亮支持
     vscode-styled-jsx	styled-jsx高亮支持
-    
-    
-    
+
+
+
     "search.followSymlinks":false
