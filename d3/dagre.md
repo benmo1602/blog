@@ -1,11 +1,3 @@
-<!--
- * @Description: description
- * @Author: benmo(cky9302@163.com)
- * @Date: 2021-01-20 20:11:13
- * @LastEditors: benmo(cky9302@163.com)
- * @LastEditTime: 2021-01-20 20:27:39
--->
-
 ```
 let dataset ={
   nodes: [

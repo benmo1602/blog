@@ -1,11 +1,4 @@
-<!--
- * @Description: Do not edit
- * @Author: benmo
- * @Date: 2020-01-09 14:37:33
- * @LastEditors  : benmo
- -->
- # Dart中List的相关方法总结
-
+Dart中List的相关方法总结
   ### 初始化List
 
   ```
@@ -30,7 +23,7 @@
   var testList5 = [true,"嘎嘎嘎",1];
   testList5.add(1.6);//可以添加
 
-```
+  ```
 ### 常用字段
 ```
   var testList6 = [1,"2",3,34532,555];
