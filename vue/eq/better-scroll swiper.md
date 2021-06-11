@@ -28,7 +28,6 @@
             observer:true,//修改swiper自己或子元素时，自动初始化swiper
             on:{
                 slideChange() {
-
                         // 记录 历史top 值
                         _this.swiperindex = this.activeIndex;
                         _this.activeId = _this.aNavIds[this.activeIndex];
@@ -43,7 +42,7 @@
                 },
                 slideChangeTransitionEnd () {
                         _this.$refs.mySwiper.$el.style.height = window.getComputedStyle(_this.$refs.mySwiper.$children[this.activeIndex].$el).height
-                        // 在swiper 切换完成 回到记录高度  
+                        // 在swiper 切换完成 回到记录高度
                         setTimeout(() => {
                                     _this.groupScroll.scrollTo(0, _this.arrTop[this.activeIndex], 300, '');
                         },200)
