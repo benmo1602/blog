@@ -1,3 +1,4 @@
+```javascript
 var eventEmitter = {
     on : function(event,listener){
         if(typeof this[event] !== 'undefined')
@@ -17,12 +18,13 @@ var eventEmitter = {
             }
         }
     }
+
 } ;
+```
 
 
 
-
-
+```javascript
 Object.prototype.extend = function(){
     var hasOwnProperty = Object.hasOwnProperty ;
     var object = Object.create(this) ;
@@ -40,9 +42,13 @@ Object.prototype.extend = function(){
         }
     }
     return object;
+
 } ;
+```
 
 
+
+```javascript
 Object.prototype.instanceof = function(prototype){
     var object = this ;
     do{
@@ -68,8 +74,13 @@ function eventEmitter(){
             var args = Array.prototype.slice.call(arguments,1) ;
         }
     } ;
-} ;
 
+} ;
+```
+
+
+
+```javascript
 Object.prototype.extend = function(){
     var hasOwnProperty = Object.hasOwnProperty ;
     var object = Object.create(this) ;
@@ -78,13 +89,13 @@ Object.prototype.extend = function(){
 
     while(index){
         var extension = arguments[length - (index--)] ;
-
+    
         for(var property in extension){
             if(property !== 'clones' &&
                 hasOwnProperty.call(extension,property) ||
                 typeof object[property] === 'undefined')
                 object[property] = extension[property] ;
-
+    
             if(hasOwnProperty.call(extension,'clones')){
                 extension.clones.unshift(object) ;
             } else{
@@ -92,9 +103,16 @@ Object.prototype.extend = function(){
             }
         }
     return object;
+
 } ;
 
 
+
+```
+
+
+
+```javascript
 function blueprint(f){
     var g = function(){
         f.apply(this,arguments) ;
@@ -103,7 +121,6 @@ function blueprint(f){
     g.clones = [] ;
     return g ;
 } ;
-
 
 
 var eventEmitter = blueprint(function(){
@@ -119,32 +136,37 @@ var eventEmitter = blueprint(function(){
             var listeners = events[event];
             var length = listeners.length, index = length;
             var args = Array.prototype.slice.call(arguments, 1);
-
+    
             while (index) {
                 var listener = listeners[length - (index--)];
                 listener.apply(this, args);
             }
         }
     };
+
 }) ;
+```
 
-/**
- *  蓝图需要特别注意。尽管对于蓝图的修改会被发送到它的克隆，
- * 但是蓝图的新的克隆并不会反映这些修改。幸运的是这个问题的解决方法很简单。
- * 我们只需要对blueprint方法进行小小的修改，然后任何对于蓝图的修改就会反
- * 映在克隆上了
- * */
+蓝图需要特别注意。尽管对于蓝图的修改会被发送到它的克隆，
+
+但是蓝图的新的克隆并不会反映这些修改。幸运的是这个问题的解决方法很简单。
+
+我们只需要对blueprint方法进行小小的修改，然后任何对于蓝图的修改就会反映在克隆上了
+
+```javascript
 function blueprint(f) {
-    var g = function () {
-    f.apply(this, arguments);
-    g.clones.unshift(this);
+   var g = function () {
+     f.apply(this, arguments);
+     g.clones.unshift(this);
 
-    var hasOwnProperty = Object.hasOwnProperty;
+     var hasOwnProperty = Object.hasOwnProperty;
 
-    for (var property in g)
-        if (property !== "clones" && hasOwnProperty.call(g, property))
-        this[property] = g[property];
-    };
-    g.clones = [];
-    return g;
+     for (var property in g)
+         if (property !== "clones" && hasOwnProperty.call(g, property))
+         this[property] = g[property];
+   };
+   g.clones = [];
+   return g;
 }
+```
+
