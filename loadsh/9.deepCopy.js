@@ -12,3 +12,6 @@ function deepClone(params = {}) {
   }
   return res;
 }
+
+// 浅 copy
+// Object.assign 、 解构 、 数组 concat
