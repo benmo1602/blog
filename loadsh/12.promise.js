@@ -1,3 +1,5 @@
+
+// 实现 any
 Promise.any = function(ps) {
   let r, j;
   const promise = new Promise((resolve, reject) => {
@@ -21,6 +23,7 @@ Promise.any = function(ps) {
   return promise;
 };
 
+// 实现 all
 Promise.all = function(promises) {
   return new Promise(function(resolve, reject) {
     if (!isArray(promises)) {
