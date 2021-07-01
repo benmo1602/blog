@@ -1,11 +1,4 @@
-<!--
- * @Description: description
- * @Author: caoky(caoky@dchealth.com)
- * @Date: 2020-09-07 17:50:05
- * @LastEditors: caoky(caoky@dchealth.com)
- * @LastEditTime: 2020-09-07 18:38:56
--->
-setup
+### setup
 调用时机
 
 创建组件实例，然后初始化 props ，紧接着就调用setup 函数。从生命周期钩子的视角来看，它会在 beforeCreate 钩子之前被调用
