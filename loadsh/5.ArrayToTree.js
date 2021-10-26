@@ -78,5 +78,3 @@ const buildTree = (arr) => {
 
 // console.log(JSON.stringify(buildTree(menu_list))); //测试代码，menu_list 为前面的数据。
 // Array.prototype.find()
-const makeTree = (arr) => {
-}
